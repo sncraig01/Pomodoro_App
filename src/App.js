@@ -6,7 +6,7 @@ import AuthUser from "./authUser.js";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header">       
         <Timer />
       </header>
     </div>

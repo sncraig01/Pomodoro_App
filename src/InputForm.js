@@ -51,6 +51,7 @@ class InputForm extends React.Component {
     usersRef.push(user); //push the data to the database
   };
 
+
   render() {
     return (
       <div className="input">
