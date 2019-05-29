@@ -1,10 +1,13 @@
-input, select, textarea{
-    color: black;
- }
- 
- textarea:focus, input:focus {
-    color: black;
- }
+input,
+select,
+textarea {
+  color: black;
+}
+
+textarea:focus,
+input:focus {
+  color: black;
+}
 
 input,
 select,
@@ -29,7 +32,7 @@ input {
 }
 
 h1 {
-  font-size: 20px;
+  font-size: 30px;
   margin: 0px 0px 80px 0px;
 }
 
