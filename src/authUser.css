@@ -1,3 +1,4 @@
+
 input,
 select,
 textarea {
@@ -8,3 +9,36 @@ textarea:focus,
 input:focus {
   color: black;
 }
+
+.firebaseui-button {
+  margin: 5px 20px 100px 10px;
+  font-size: 15px;
+  padding: 10px;
+}
+
+input {
+  margin: 0px 15px;
+  color: black;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0px 0px 80px 0px;
+}
+
+h2 {
+  font-size: 60px;
+  color: white;
+  margin: 0px;
+}
+
+p {
+  font-size: 10px;
+}
+
+li {
+  font-size: 20px;
+  display: inline;
+  margin: 10px;
+}
+
