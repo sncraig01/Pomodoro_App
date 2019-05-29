@@ -14,7 +14,7 @@ class InputForm extends React.Component {
     day: "",
     month: "",
     year: "",
-    activity: "",
+    description: "",
 
     submitted: false
   };
@@ -32,25 +32,23 @@ class InputForm extends React.Component {
     this.setState({ year: text });
   };
   //change state as user inputs something
-  changeActivity = text => {
-    this.setState({ activity: text });
+  changeDescription = text => {
+    this.setState({ description: text });
   };
 
   //submit the activity they did
   submitLog = () => {
     this.setState({ submitted: true });
-    const usersRef = firebase.database().ref("users"); //reference to the database "users" key
+    const usersRef = firebase.database().ref("users/" + this.state.name); //reference to the database "users" key
     let date_format =
       this.state.month + " " + this.state.day + ", " + this.state.year;
 
-    const user = {
+    const activity = {
       //create thing to be pushed
-      name: this.state.name,
       date: date_format,
-      activity: this.state.activity,
-      email: this.state.email
+      description: this.state.description
     };
-    usersRef.push(user); //push the data to the database
+    usersRef.push(activity); //push the data to the database
   };
 
   doItAgainClicked = () => {
@@ -69,17 +67,17 @@ class InputForm extends React.Component {
           <InputGroup compact>
             <Input
               style={{ width: "13%" }}
-              defaultValue="Day"
+              placeholder="Day"
               onChange={e => this.changeDay(e.target.value)}
             />
             <Input
               style={{ width: "30%" }}
-              defaultValue="Month"
+              placeholder="Month"
               onChange={e => this.changeMonth(e.target.value)}
             />
             <Input
               style={{ width: "20%" }}
-              defaultValue="Year"
+              placeholder="Year"
               onChange={e => this.changeYear(e.target.value)}
             />
           </InputGroup>
@@ -87,8 +85,8 @@ class InputForm extends React.Component {
           <TextArea
             rows={4}
             style={{ width: "50%" }}
-            defaultValue="built a rocketship, ran a marathon, etc..."
-            onChange={e => this.changeActivity(e.target.value)}
+            placeholder="built a rocketship, ran a marathon, etc..."
+            onChange={e => this.changeDescription(e.target.value)}
           />
           <p />
           <Button type="primary" onClick={() => this.submitLog()}>

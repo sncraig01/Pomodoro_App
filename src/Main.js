@@ -1,8 +1,6 @@
 import Timer from "./timer";
 import React from "react";
 import "./App.css";
-import AuthUser from "./authUser.js";
-import InputForm from "./InputForm.js";
 import NavBar from "./NavBar.js";
 
 export default class Main extends React.Component {
