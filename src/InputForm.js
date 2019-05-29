@@ -9,17 +9,14 @@ const { TextArea } = Input;
 
 class InputForm extends React.Component {
   state = {
-    name: "",
+    name: this.props.name,
+    email: this.props.email,
     day: "",
     month: "",
     year: "",
     activity: ""
   };
 
-  //change state as user inputs something
-  changeName = text => {
-    this.setState({ name: text });
-  };
   //change state as user inputs something
   changeDay = text => {
     this.setState({ day: text });
@@ -37,6 +34,8 @@ class InputForm extends React.Component {
     this.setState({ activity: text });
   };
 
+
+  //submit the activity they did
   submitLog = () => {
     const usersRef = firebase.database().ref("users"); //reference to the database "users" key
     let date_format =
@@ -46,7 +45,8 @@ class InputForm extends React.Component {
       //create thing to be pushed
       name: this.state.name,
       date: date_format,
-      activity: this.state.activity
+      activity: this.state.activity,
+      email: this.state.email,
     };
     usersRef.push(user); //push the data to the database
   };
@@ -57,11 +57,7 @@ class InputForm extends React.Component {
       <div className="input">
         <h1> Way to go! </h1>
         <br />
-        <Input
-          style={{ width: "40%" }}
-          defaultValue="Name"
-          onChange={e => this.changeName(e.target.value)}
-        />
+        <div> Name: {this.state.name} </div>
         <br />
         <InputGroup compact>
           <Input
