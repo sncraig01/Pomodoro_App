@@ -13,8 +13,7 @@ export default class Main extends React.Component {
         <header className="App-header">
           
           <Timer />
-          <br />
-          <InputForm />
+
         </header>
       </div>
     );
