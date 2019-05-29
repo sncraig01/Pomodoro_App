@@ -14,7 +14,9 @@ class InputForm extends React.Component {
     day: "",
     month: "",
     year: "",
-    activity: ""
+    activity: "",
+
+    submitted: false,
   };
 
   //change state as user inputs something
@@ -37,6 +39,7 @@ class InputForm extends React.Component {
 
   //submit the activity they did
   submitLog = () => {
+    this.setState( {submitted: true });
     const usersRef = firebase.database().ref("users"); //reference to the database "users" key
     let date_format =
       this.state.month + " " + this.state.day + ", " + this.state.year;
@@ -52,49 +55,62 @@ class InputForm extends React.Component {
   };
 
 
+  doItAgainClicked=()=>{ //to be called when they click the "Do It Again!" button
+    this.props.action();
+    this.setState( {submitted: false} ); //reset the page
+  }
+
+
   render() {
-    return (
-      <div className="input">
-        <h1> Way to go! </h1>
-        <br />
-        <div> Name: {this.state.name} </div>
-        <br />
-        <InputGroup compact>
-          <Input
-            style={{ width: "13%" }}
-            defaultValue="Day"
-            onChange={e => this.changeDay(e.target.value)}
+    if( !this.state.submitted ){
+      return (
+        <div className="input">
+          <h1> Way to go! </h1>
+          <br />
+          <div> Name: {this.state.name} </div>
+          <br />
+          <InputGroup compact>
+            <Input
+              style={{ width: "13%" }}
+              defaultValue="Day"
+              onChange={e => this.changeDay(e.target.value)}
+            />
+            <Input
+              style={{ width: "30%" }}
+              defaultValue="Month"
+              onChange={e => this.changeMonth(e.target.value)}
+            />
+            <Input
+              style={{ width: "20%" }}
+              defaultValue="Year"
+              onChange={e => this.changeYear(e.target.value)}
+            />
+          </InputGroup>
+          <p />
+          <p>What did you do? </p>
+          <TextArea
+            rows={4}
+            style={{ width: "50%" }}
+            defaultValue="built a rocketship, ran a marathon, etc..."
+            onChange={e => this.changeActivity(e.target.value)}
           />
-          <Input
-            style={{ width: "30%" }}
-            defaultValue="Month"
-            onChange={e => this.changeMonth(e.target.value)}
-          />
-          <Input
-            style={{ width: "20%" }}
-            defaultValue="Year"
-            onChange={e => this.changeYear(e.target.value)}
-          />
-        </InputGroup>
-        <p />
-        <p>What did you do? </p>
-        <TextArea
-          rows={4}
-          style={{ width: "50%" }}
-          defaultValue="built a rocketship, ran a marathon, etc..."
-          onChange={e => this.changeActivity(e.target.value)}
-        />
-        <p />
-        <Button type="primary" onClick={() => this.submitLog()}>
-          {" "}
-          Log My Activity!{" "}
-        </Button>{" "}
-        <Button type="primary" onClick={this.props.action}>
-          Do it Again!
-        </Button>
-        <br />
-      </div>
-    );
+          <p />
+          <Button type="primary" onClick={() => this.submitLog()}>
+            {" "}
+            Log My Activity!{" "}
+          </Button>{" "}
+          <br />
+        </div>
+      );
+    } else {
+      return(
+        <div className="input">
+          <Button type="primary" onClick={() => this.doItAgainClicked()}>
+            Do it Again!
+          </Button>
+        </div>
+      )
+    }  
   }
 }
 

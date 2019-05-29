@@ -5,7 +5,6 @@ import "./timer.css";
 
 class Timer extends Component {
   state = {
-    rerendered: false,
     name: "",
     email: "",
 
@@ -93,7 +92,7 @@ class Timer extends Component {
           <div>
             <h1 type="timer"> Welcome! </h1>
             <p type="timer"> Click start to begin using the Pomodoro method </p>
-            <h2 type="timer">
+            <h2 type="timer" style={{ color: "white" }}>
               {minutes} : {seconds}
             </h2>
             <div>
@@ -123,7 +122,8 @@ class Timer extends Component {
                   <button type="timer" onClick={this.resetTimer}>
                     Reset
                   </button>
-                )}
+      
+                    )}
             </div>
           </div>
         )}
