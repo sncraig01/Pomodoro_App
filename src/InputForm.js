@@ -18,7 +18,6 @@ class InputForm extends React.Component{
         activity: "",
     }
 
-
     //change state as user inputs something
     changeName = ( text ) => {
         this.setState( {name: text });
@@ -54,6 +53,7 @@ class InputForm extends React.Component{
     }
 
     render(){
+
         return (
             <div className="input">
                 <b> Log what you accomplished! </b>
