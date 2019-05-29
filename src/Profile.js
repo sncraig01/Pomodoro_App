@@ -3,19 +3,38 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import SvgIcon from "@material-ui/core/SvgIcon";
-import Fab from "@material-ui/core/Fab";
+import Button from "@material-ui/core/Button";
+import "./Profile.css";
+//import firebase from "./Firebase.js";
 
 export default class Profile extends React.Component {
+  /*
+  componentDidMount() {
+    const activitiesRef = firebase.database().ref("activities");
+    activitiesRef.on("value", snapshot => {
+      let activities = snapshot.val();
+      let newState = [];
+      for (let activity in activities) {
+        newState.push({
+          name: activities[activity].name,
+          date: contracts[contract].company,
+          details: contracts[contract].details
+        });
+      }
+      this.setState({ contracts: newState });
+    });
+  }
+*/
   handleClick = e => {
     this.props.history.push("/app");
   };
 
+  logOut = e => {};
+
   render() {
     return (
-      <div align="center">
+      <div className="Profile">
         <AppBar position="static">
           <Toolbar>
             <IconButton onClick={this.handleClick} color="inherit">
@@ -34,34 +53,59 @@ export default class Profile extends React.Component {
           </Toolbar>
         </AppBar>
         <br />
-        <Fab variant="extended">Log Out</Fab>
+        <Button variant="outlined" color="inherit" onClick={this.logOut}>
+          Log Out
+        </Button>
         <br />
-        <br />
-        <Typography
-          component="h2"
-          variant="h2"
-          gutterBottom
-          color="textPrimary"
-        >
+        <Typography component="h2" variant="h2" gutterBottom color="inherit">
           Summary
         </Typography>
-        <h3>Activities Completed Today: </h3>
-        <h3>Total Activities Completed: </h3>
+        <Typography component="h5" variant="h5" gutterBottom color="inherit">
+          Activities Completed Today: ###
+        </Typography>
+        <Typography component="h5" variant="h5" gutterBottom color="inherit">
+          Total Activities Completed: ###
+        </Typography>
         <br />
-        <Typography
-          component="h2"
-          variant="h2"
-          gutterBottom
-          color="textPrimary"
-        >
+        <Typography component="h2" variant="h2" gutterBottom color="inherit">
           Activity Log
         </Typography>
-        <h3>Activity1</h3>
-        <p inline>Date1</p>
-        <h3>Activity2</h3>
-        <p inline>Date2</p>
-        <h3>Activity3</h3>
-        <p inline>Date3</p>
+        <Typography component="h5" variant="h5" gutterBottom color="inherit">
+          Activity1
+        </Typography>
+        <Typography
+          component="h6"
+          variant="h6"
+          gutterBottom
+          color="inherit"
+          inline
+        >
+          Date1
+        </Typography>
+        <Typography component="h5" variant="h5" gutterBottom color="inherit">
+          Activity2
+        </Typography>
+        <Typography
+          component="h6"
+          variant="h6"
+          gutterBottom
+          color="inherit"
+          inline
+        >
+          Date2
+        </Typography>
+        <Typography component="h5" variant="h5" gutterBottom color="inherit">
+          Activity3
+        </Typography>
+        <Typography
+          component="h6"
+          variant="h6"
+          gutterBottom
+          color="inherit"
+          inline
+        >
+          Date3
+        </Typography>
       </div>
     );
   }
