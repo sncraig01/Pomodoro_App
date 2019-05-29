@@ -38,29 +38,6 @@ var uiConfig = {
 };
 
 export default class AuthUser extends React.Component {
-  componentDidMount = () => {
-    /*
-    let username = "";
-    let useremail = "";
-
-    firebase.auth().onAuthStateChanged( function(user) {
-      if (user) {
-        console.log( "there is a user ");
-        username = user.displayName;
-        useremail = user.email;
-
-      } else{
-        console.log ("no user" );
-      }
-
-    });
-
-    console.log( username );
-    console.log( useremail );
-
-    */
-    //this.setState( {displayName: username, email: useremail}) // set the state with the current user's name and email
-  };
 
   render() {
     return (

@@ -5,7 +5,6 @@ import firebase from "./Firebase.js";
 
 class Timer extends Component {
   state = {
-    rerendered: false,
     name: "",
     email: "",
 
@@ -81,14 +80,13 @@ class Timer extends Component {
         //the return starts with a ternany operator that checks whether we want to collect input or not. if we do it calls up
         //InputForm.js and if not it has the timer set up to run. The timer has a bunch of logic that looks at all the state conditions
         //and based on the combination displays different buttons with distinct functionality
-        <div>
-            <h1> Welcome! </h1>
-            <p> Click start to begin using the Pomodoro method </p> 
-            
+        <div>        
           {this.state.collectInput === true ? (
             (<InputForm />, <InputForm name={this.state.name} email={this.state.email} action={this.newActivity} />)
           ) : (
             <div>
+              <h1> Welcome! </h1>
+              <p> Click start to begin using the Pomodoro method </p> 
               <h2 style={{ color: "white" }}>
                 {minutes} : {seconds}
               </h2>
