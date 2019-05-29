@@ -5,12 +5,15 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import AuthUser from "./authUser.js";
+import Main from "./Main.js";
+import Profile from "./Profile.js";
 
 const routing = (
   <Router>
     <div>
-      <Route path="/app" component={App} />
-      <Route path="/login" component={AuthUser} />
+      <Route path="/app" component={Main} />
+      <Route path="/profile" component={Profile} />
+      <Route exact path="/" component={AuthUser} />
     </div>
   </Router>
 );

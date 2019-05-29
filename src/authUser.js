@@ -1,5 +1,12 @@
 import React from "react";
-import firebase from './Firebase.js'
+
+import Input from "@material-ui/core/Input";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { Route, Link } from "react-router-dom";
+import App from "./App.js";
+import firebase from "./Firebase.js";
+
 import './authUser.css'
 
 /* FOR FIREBASE UI AUTHENTICATION */
@@ -36,7 +43,6 @@ var uiConfig = {
   // Privacy policy url.
   privacyPolicyUrl: '<your-privacy-policy-url>'
 };
-
 
 
 export default class AuthUser extends React.Component {
@@ -84,60 +90,3 @@ export default class AuthUser extends React.Component {
 }
 
 
- /*
-  state = {
-    username: "",
-    password: ""
-  };
-
-  handleClick = e => {
-    e.preventDefault();
-    //if they entered something for both username and password
-    if (this.state.username && this.state.password) {
-        let email = this.state.username;
-        let password = this.state.password;
-  
-
-    }
-
-    //if it's verified, use the router to go to the app page
-    this.props.history.push('/app');
-  };
-*/
-
-
-/*
-        <br />
-        <Typography
-          component="h2"
-          variant="h2"
-          gutterBottom
-          color="textPrimary"
-        >
-          User Login
-        </Typography>
-        <form onSubmit={e => this.handleClick(e)}>
-          <Input
-            name="username"
-            placeholder="Username"
-            value={this.state.username}
-            onChange={e => this.setState({ username: e.target.value })}
-            required
-          />
-          <br />
-          <br />
-          <Input
-            name="password"
-            placeholder="Password"
-            value={this.state.password}
-            onChange={e => this.setState({ password: e.target.value })}
-            required
-          />
-          <br />
-          <br />
-          <Button variant="contained" color="primary" type="submit">
-            Submit
-          </Button>
-        </form>
-
-        */
