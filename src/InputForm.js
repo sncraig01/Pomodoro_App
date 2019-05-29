@@ -14,9 +14,9 @@ class InputForm extends React.Component {
     day: "",
     month: "",
     year: "",
-    activity: "",
+    description: "",
 
-    submitted: false,
+    submitted: false
   };
 
   //change state as user inputs something
@@ -32,90 +32,62 @@ class InputForm extends React.Component {
     this.setState({ year: text });
   };
   //change state as user inputs something
-  changeActivity = text => {
-    this.setState({ activity: text });
+  changeDescription = text => {
+    this.setState({ description: text });
   };
-
 
   //submit the activity they did
   submitLog = () => {
-    this.setState( {submitted: true });
-    const usersRef = firebase.database().ref("users"); //reference to the database "users" key
+    this.setState({ submitted: true });
+    const usersRef = firebase.database().ref("users/" + this.state.name); //reference to the database "users" key
     let date_format =
       this.state.month + " " + this.state.day + ", " + this.state.year;
 
-    const user = {
+    const activity = {
       //create thing to be pushed
-      name: this.state.name,
       date: date_format,
-      activity: this.state.activity,
-      email: this.state.email,
+      description: this.state.description
     };
-    usersRef.push(user); //push the data to the database
+    usersRef.push(activity); //push the data to the database
   };
 
-
-  doItAgainClicked=()=>{ //to be called when they click the "Do It Again!" button
+  doItAgainClicked = () => {
+    //to be called when they click the "Do It Again!" button
     this.props.action();
-    this.setState( {submitted: false} ); //reset the page
-  }
-
+    this.setState({ submitted: false }); //reset the page
+  };
 
   render() {
-    if( !this.state.submitted ){
+    if (!this.state.submitted) {
       return (
         <div className="input">
-          <h1> Way to go! </h1>
-          <br />
-          <div> Name: {this.state.name} </div>
-          <br />
+          <h1 type="inputform"> Way to go! </h1>
+          <p type="inputform"> Name: {this.state.name} </p>
+          <p type="inputform">What did you do? </p>
           <InputGroup compact>
             <Input
               style={{ width: "13%" }}
-              defaultValue="Day"
+              placeholder="Day"
               onChange={e => this.changeDay(e.target.value)}
             />
             <Input
               style={{ width: "30%" }}
-              defaultValue="Month"
+              placeholder="Month"
               onChange={e => this.changeMonth(e.target.value)}
             />
             <Input
               style={{ width: "20%" }}
-              defaultValue="Year"
+              placeholder="Year"
               onChange={e => this.changeYear(e.target.value)}
             />
           </InputGroup>
           <p />
-          <p>What did you do? </p>
           <TextArea
             rows={4}
             style={{ width: "50%" }}
-            defaultValue="built a rocketship, ran a marathon, etc..."
-            onChange={e => this.changeActivity(e.target.value)}
+            placeholder="built a rocketship, ran a marathon, etc..."
+            onChange={e => this.changeDescription(e.target.value)}
           />
-<<<<<<< HEAD
-        </InputGroup>
-        <p />
-        <p>What did you do? </p>
-        <TextArea
-          rows={4}
-          style={{ width: "50%" }}
-          placeholder="built a rocketship, ran a marathon, etc..."
-          onChange={e => this.changeActivity(e.target.value)}
-        />
-        <p />
-        <Button type="primary" onClick={() => this.submitLog()}>
-          {" "}
-          Log My Activity!{" "}
-        </Button>{" "}
-        <Button type="primary" onClick={this.props.action}>
-          Do it Again!
-        </Button>
-        <br />
-      </div>
-    );
-=======
           <p />
           <Button type="primary" onClick={() => this.submitLog()}>
             {" "}
@@ -125,15 +97,14 @@ class InputForm extends React.Component {
         </div>
       );
     } else {
-      return(
+      return (
         <div className="input">
           <Button type="primary" onClick={() => this.doItAgainClicked()}>
             Do it Again!
           </Button>
         </div>
-      )
-    }  
->>>>>>> c31aa3bcdda27c5cae93cc6cb8dd5ae890338ad6
+      );
+    }
   }
 }
 
