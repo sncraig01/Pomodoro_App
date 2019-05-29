@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Route, Link } from "react-router-dom";
 import App from "./App.js";
+import firebase from "./Firebase.js";
 
 export default class AuthUser extends React.Component {
   state = {
@@ -14,7 +15,7 @@ export default class AuthUser extends React.Component {
   handleClick = e => {
     e.preventDefault();
     if (this.state.username && this.state.password) {
-        this.props.history.push('/app');
+      this.props.history.push("/app");
     }
   };
 
