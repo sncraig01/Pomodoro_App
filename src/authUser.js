@@ -80,10 +80,12 @@ export default class AuthUser extends React.Component {
 
     return (
       <div className="App">
+      <header className="App-header">  
         <h1> Welcome to the Pomodoro Tracker! </h1>
         <div id="firebaseui-auth-container"></div>
         <div id="loader">Loading...</div>
         { ui.start('#firebaseui-auth-container', uiConfig) }
+        </header>
       </div>
     );
   }
