@@ -1,12 +1,17 @@
+
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import AuthUser from "./authUser.js";
+import InputForm from './InputForm.js'
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Login Success!</h1>
+      <header className="App-header">
+        <InputForm/>
+      </header>
     </div>
   );
 }
