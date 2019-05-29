@@ -16,7 +16,7 @@ class InputForm extends React.Component {
     year: "",
     activity: "",
 
-    submitted: false,
+    submitted: false
   };
 
   //change state as user inputs something
@@ -36,10 +36,9 @@ class InputForm extends React.Component {
     this.setState({ activity: text });
   };
 
-
   //submit the activity they did
   submitLog = () => {
-    this.setState( {submitted: true });
+    this.setState({ submitted: true });
     const usersRef = firebase.database().ref("users"); //reference to the database "users" key
     let date_format =
       this.state.month + " " + this.state.day + ", " + this.state.year;
@@ -49,26 +48,24 @@ class InputForm extends React.Component {
       name: this.state.name,
       date: date_format,
       activity: this.state.activity,
-      email: this.state.email,
+      email: this.state.email
     };
     usersRef.push(user); //push the data to the database
   };
 
-
-  doItAgainClicked=()=>{ //to be called when they click the "Do It Again!" button
+  doItAgainClicked = () => {
+    //to be called when they click the "Do It Again!" button
     this.props.action();
-    this.setState( {submitted: false} ); //reset the page
-  }
-
+    this.setState({ submitted: false }); //reset the page
+  };
 
   render() {
-    if( !this.state.submitted ){
+    if (!this.state.submitted) {
       return (
         <div className="input">
-          <h1> Way to go! </h1>
-          <br />
-          <div> Name: {this.state.name} </div>
-          <br />
+          <h1 type="inputform"> Way to go! </h1>
+          <p type="inputform"> Name: {this.state.name} </p>
+          <p type="inputform">What did you do? </p>
           <InputGroup compact>
             <Input
               style={{ width: "13%" }}
@@ -87,7 +84,6 @@ class InputForm extends React.Component {
             />
           </InputGroup>
           <p />
-          <p>What did you do? </p>
           <TextArea
             rows={4}
             style={{ width: "50%" }}
@@ -103,14 +99,14 @@ class InputForm extends React.Component {
         </div>
       );
     } else {
-      return(
+      return (
         <div className="input">
           <Button type="primary" onClick={() => this.doItAgainClicked()}>
             Do it Again!
           </Button>
         </div>
-      )
-    }  
+      );
+    }
   }
 }
 
