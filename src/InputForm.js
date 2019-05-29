@@ -81,7 +81,7 @@ class InputForm extends React.Component {
         <TextArea
           rows={4}
           style={{ width: "50%" }}
-          defaultValue="built a rocketship, ran a marathon, etc..."
+          placeholder="built a rocketship, ran a marathon, etc..."
           onChange={e => this.changeActivity(e.target.value)}
         />
         <p />

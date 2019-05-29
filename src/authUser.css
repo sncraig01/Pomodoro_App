@@ -1,11 +1,3 @@
-input, select, textarea{
-    color: black;
- }
- 
- textarea:focus, input:focus {
-    color: black;
- }
-
 input,
 select,
 textarea {
