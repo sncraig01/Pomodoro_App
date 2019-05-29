@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+=======
+input,
+select,
+textarea {
+  color: black;
+}
+
+textarea:focus,
+input:focus {
+  color: black;
+}
+
+>>>>>>> c31aa3bcdda27c5cae93cc6cb8dd5ae890338ad6
 input,
 select,
 textarea {
@@ -21,7 +35,7 @@ input {
 }
 
 h1 {
-  font-size: 20px;
+  font-size: 30px;
   margin: 0px 0px 80px 0px;
 }
 

@@ -1,19 +1,33 @@
+<<<<<<< HEAD
 
 button {
+=======
+button[type="timer"] {
+>>>>>>> c31aa3bcdda27c5cae93cc6cb8dd5ae890338ad6
   border-radius: 10px;
   background: #282c34;
   border: 4px solid #3f51b5;
   font-size: 16px;
   padding: 10px 20px;
   width: 200px;
+  margin: 10px 10px;
   color: white;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-h2 {
+h2[type="timer"] {
   font-size: 80px;
 }
 
 body {
   overflow: hidden;
+}
+
+p[type="timer"] {
+  font-size: 15px;
+  margin: 0px;
+}
+
+h1[type="timer"] {
+  font-size: 90px;
 }
