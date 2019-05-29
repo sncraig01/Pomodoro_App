@@ -1,13 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import AuthUser from "./authUser.js";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        Sarah changed this
-      </header>
+      <h1>Login Success!</h1>
     </div>
   );
 }
