@@ -4,11 +4,11 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import SvgIcon from "@material-ui/core/SvgIcon";
-import Button from "@material-ui/core/Button";
 import "./App.css"
 import "./Profile.css";
 import Graph from "./Graph.js"
 import firebase from "./Firebase.js";
+import { Row, Col } from 'antd';
 
 export default class Profile extends React.Component {
 
@@ -17,6 +17,8 @@ export default class Profile extends React.Component {
     email: "",
 
     activities: [],
+    num_activities_today: 0,
+    activities_count: 0,
   }
 
   componentDidMount=()=>{
@@ -40,11 +42,64 @@ export default class Profile extends React.Component {
         });
   
        this.setState( {activities: returnArr } );
+       this.getTodaysStats();
+       
     }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
     });
     }
+
   }
+
+  countInArray(array, what) {
+    var count = 0;
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === what) {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+  getTodaysStats=()=>{
+    let today = new Date(); //get the current date
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    let todays_date = monthNames[today.getMonth()] + " " + today.getDate() + ", " + today.getFullYear();
+
+    let alldata = this.state.activities;
+
+    //get an array of each date ONCE
+    let datesONCE = [];
+    //get an array of all the dates
+    let datesALL = [];
+
+    for( let i = 0; i < alldata.length; i ++ ){
+        let testDate = alldata[i].date;
+        datesALL.push( testDate ); //add them all to this one
+        if( !datesONCE.includes( testDate ) ){ //add each one once to this one
+            datesONCE.push( testDate )
+        }
+    }
+
+    console.log( "activities completed today: ")
+    let numActivitiesToday = this.countInArray( datesALL, todays_date );
+    this.setState({num_activities_today: numActivitiesToday, activities_count: alldata.length} )
+  }
+
 
   //map all the activities
   mapItems= () => {
@@ -62,22 +117,16 @@ export default class Profile extends React.Component {
           }
         )
   }
-/*
-
-*/
 
   handleClick = e => {
     this.props.history.push("/app");
   };
 
 
-  logOut = e => {};
-
-
   render() {
     return (
       <div className="Profile" >
-        <AppBar position="static">
+       <AppBar position="static">
           <Toolbar>
             <IconButton onClick={this.handleClick} color="inherit">
               <SvgIcon
@@ -94,42 +143,38 @@ export default class Profile extends React.Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <br />
-        <Button variant="outlined" color="inherit" onClick={this.logOut}>
-          Log Out
-        </Button>
-        <br />
-        <Typography component="h2" variant="h2" gutterBottom color="inherit">
-          Summary
-        </Typography>
-        <Typography component="h5" variant="h5" gutterBottom color="inherit">
-          Activities Completed Today: ###
-        </Typography>
-        <Typography component="h5" variant="h5" gutterBottom color="inherit">
-          Total Activities Completed: ###
-        </Typography>
-        <br />
-        <Typography component="h2" variant="h2" gutterBottom color="inherit">
-          Activity Log
-        </Typography>
-        <br />
-        <div >
-          {this.mapItems()}
-        </div>
         <br/>
-        {  (this.state.activities.length !== 0) ? 
-                    <Graph data={this.state.activities}/> : null } 
+      <Row>
+        <Col span={12}>
+          <Typography component="h2" variant="h2" gutterBottom color="inherit" align="center" >
+            Activity Log
+          </Typography>
+          <div >
+            {this.mapItems()}
+          </div>
+          <br/>
+        </Col>
+
+        <Col span={12}>
+          <Typography component="h2" variant="h2" gutterBottom color="inherit" align="center">
+            Summary
+          </Typography>
+          <Typography component="h5" variant="h5" gutterBottom color="inherit" align="center">
+            Activities Completed Today: {this.state.num_activities_today}
+          </Typography>
+          <Typography component="h5" variant="h5" gutterBottom color="inherit" align="center" >
+            Total Activities Completed: {this.state.activities_count}
+          </Typography>
+          <br/>
+          <div>
+          {  (this.state.activities.length !== 0) ? 
+                      <Graph data={this.state.activities}/>: null } 
+          </div>
+          <br />
+        </Col>
+      </Row>
       </div>
     );
   }
 }
-
-
-
-
-
-
-
-
-
 

@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import "./Graph.css";
 import * as V from 'victory';
-import { VictoryBar, VictoryChart } from 'victory';
+import { VictoryBar, VictoryChart, VictoryLabel} from 'victory';
 
 class Graph extends React.Component {
 
@@ -76,8 +76,9 @@ class Graph extends React.Component {
         return (
             <div className="App">
                 <div type="graph"> 
-                    {(this.state.formattedData.length !== 0 ) ?      
-                    <VictoryChart>
+                    {(this.state.formattedData.length !== 0 ) ?     
+                    <VictoryChart domainPadding={50} >
+                        <VictoryLabel text="Your Activity History" x={225} y={30} textAnchor="middle" style={{ fontSize: 30 }} />
                         <VictoryBar data={this.state.formattedData} x="date" y="count"/> 
                     </VictoryChart> : null  }
                     
