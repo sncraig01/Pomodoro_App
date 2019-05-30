@@ -1,10 +1,14 @@
 import React from "react";
-import "./pom.css";
 
 export default class Pom extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  handleClick = () => {
+    this.props.history.push("/app");
+  };
+
   render() {
     return (
       <div>
@@ -33,6 +37,7 @@ export default class Pom extends React.Component {
           effort and time required for every task. The goal of this method is to
           optimize efficieny and success.
         </p>
+        <button onClick={this.handleClick}>Return to Timer</button>
       </div>
     );
   }
