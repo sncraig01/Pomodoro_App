@@ -6,26 +6,45 @@ import IconButton from "@material-ui/core/IconButton";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import Button from "@material-ui/core/Button";
 import "./Profile.css";
-//import firebase from "./Firebase.js";
+import firebase from "./Firebase.js";
 
 export default class Profile extends React.Component {
-  /*
-  componentDidMount() {
-    const activitiesRef = firebase.database().ref("activities");
-    activitiesRef.on("value", snapshot => {
-      let activities = snapshot.val();
-      let newState = [];
-      for (let activity in activities) {
-        newState.push({
-          name: activities[activity].name,
-          date: contracts[contract].company,
-          details: contracts[contract].details
-        });
-      }
-      this.setState({ contracts: newState });
-    });
+
+  state={
+    name: "",
+    email: "",
+
+    activities: [],
   }
-*/
+
+  componentDidMount=()=>{
+    // set the state with the current user info
+    if (firebase.auth().currentUser) {
+      //get the current user, if its not null
+      var user = firebase.auth().currentUser;
+      this.setState({ name: user.displayName, email: user.email }); //set the state with the info
+    }
+
+    const activitiesRef = firebase.database().ref("users/" + user.displayName ); //reference to the database, for the specific user
+    //do something with the data
+    activitiesRef.on("value", (snapshot) => {
+      console.log( "snapshot")
+      console.log( snapshot.val() );
+
+      var returnArr = [];
+      snapshot.forEach(function(childSnapshot) {
+          var item = childSnapshot.val();
+  
+          returnArr.push(item);
+      });
+
+     this.setState( {activities: returnArr } );
+  }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+  });
+
+  }
+
   handleClick = e => {
     this.props.history.push("/app");
   };
