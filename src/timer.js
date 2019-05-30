@@ -101,7 +101,9 @@ class Timer extends Component {
               what it is...
             </p>
             <br />
-            <button onClick={this.learnMore}>Learn More Here</button>
+            <button type="timer" onClick={this.learnMore}>
+              Learn More Here
+            </button>
             <h2 type="timer" style={{ color: "white" }}>
               {minutes} : {seconds}
             </h2>
