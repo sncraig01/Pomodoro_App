@@ -1,104 +1,121 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "./InputForm.css";
-import { Input, Button } from "antd";
+import { Input } from "antd";
 import firebase from "./Firebase.js";
+import BreakTimer from "./breakTimer";
 
 const InputGroup = Input.Group; //needed for ant design input groups
 const { TextArea } = Input;
 
 class InputForm extends React.Component {
   state = {
-    name: "",
-    day: "",
-    month: "",
-    year: "",
-    activity: ""
+    name: this.props.name,
+    email: this.props.email,
+    description: "",
+    submitted: false
   };
 
   //change state as user inputs something
-  changeName = text => {
-    this.setState({ name: text });
-  };
-  //change state as user inputs something
-  changeDay = text => {
-    this.setState({ day: text });
-  };
-  //change state as user inputs something
-  changeMonth = text => {
-    this.setState({ month: text });
-  };
-  //change state as user inputs something
-  changeYear = text => {
-    this.setState({ year: text });
-  };
-  //change state as user inputs something
-  changeActivity = text => {
-    this.setState({ activity: text });
+  changeDescription = text => {
+    this.setState({ description: text });
   };
 
+  //submit the activity they did
   submitLog = () => {
-    const usersRef = firebase.database().ref("users"); //reference to the database "users" key
+    this.setState({ submitted: true });
+    const usersRef = firebase.database().ref("users/" + this.state.name); //reference to the database "users" key
+    let today = new Date();
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    let minutes =
+      today.getMinutes().toString().length === 1
+        ? "0" + today.getMinutes()
+        : today.getMinutes();
+    let hours =
+      today.getHours().toString().length === 1
+        ? "0" + today.getHours()
+        : today.getHours();
+    let ampm = today.getHours() >= 12 ? "pm" : "am";
     let date_format =
-      this.state.month + " " + this.state.day + ", " + this.state.year;
+      monthNames[today.getMonth()] +
+      " " +
+      today.getDate() +
+      ", " +
+      today.getFullYear();
 
-    const user = {
+    let time_format = hours + ":" + minutes + " " + ampm;
+
+    console.log(
+      monthNames[today.getMonth()] +
+        " " +
+        today.getDate() +
+        " " +
+        today.getFullYear() +
+        " " +
+        hours +
+        ":" +
+        minutes +
+        " " +
+        ampm
+    );
+
+    const activity = {
       //create thing to be pushed
-      name: this.state.name,
       date: date_format,
-      activity: this.state.activity
+      description: this.state.description,
+      time: time_format
     };
-    usersRef.push(user); //push the data to the database
+    usersRef.push(activity); //push the data to the database
   };
 
+  doItAgainClicked = () => {
+    //to be called when they click the "Do It Again!" button
+    this.props.action();
+    this.setState({ submitted: false }); //reset the page
+  };
 
   render() {
-    return (
-      <div className="input">
-        <h1> Way to go! </h1>
-        <br />
-        <Input
-          style={{ width: "40%" }}
-          defaultValue="Name"
-          onChange={e => this.changeName(e.target.value)}
-        />
-        <br />
-        <InputGroup compact>
-          <Input
-            style={{ width: "13%" }}
-            defaultValue="Day"
-            onChange={e => this.changeDay(e.target.value)}
+    if (!this.state.submitted) {
+      return (
+        <div className="input">
+          <h1 type="inputform"> Way to go! </h1>
+          <p type="inputform"> Name: {this.state.name} </p>
+          <p type="inputform">What did you do? </p>
+          <p />
+          <TextArea
+            rows={4}
+            style={{ width: "50%" }}
+            placeholder="built a rocketship, ran a marathon, etc..."
+            onChange={e => this.changeDescription(e.target.value)}
           />
-          <Input
-            style={{ width: "30%" }}
-            defaultValue="Month"
-            onChange={e => this.changeMonth(e.target.value)}
-          />
-          <Input
-            style={{ width: "20%" }}
-            defaultValue="Year"
-            onChange={e => this.changeYear(e.target.value)}
-          />
-        </InputGroup>
-        <p />
-        <p>What did you do? </p>
-        <TextArea
-          rows={4}
-          style={{ width: "50%" }}
-          defaultValue="built a rocketship, ran a marathon, etc..."
-          onChange={e => this.changeActivity(e.target.value)}
-        />
-        <p />
-        <Button type="primary" onClick={() => this.submitLog()}>
-          {" "}
-          Log My Activity!{" "}
-        </Button>{" "}
-        <Button type="primary" onClick={this.props.action}>
-          Do it Again!
-        </Button>
-        <br />
-      </div>
-    );
+          <p />
+          <button type="pretty" onClick={() => this.submitLog()}>
+            {" "}
+            Log My Activity!{" "}
+          </button>{" "}
+          <br />
+        </div>
+      );
+    } else {
+      return (
+        <div className="input">
+          <BreakTimer doItAgainClicked={this.doItAgainClicked} />
+        </div>
+      );
+    }
   }
 }
 

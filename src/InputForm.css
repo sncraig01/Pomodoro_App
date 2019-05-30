@@ -2,10 +2,19 @@
   color: white;
   font-family: Tahoma;
   font-size: 18px;
+  width: 500px;
 }
 
-h1 {
+h1[type="inputform"] {
   color: white;
   font-family: Verdana, sans-serif;
-  font-size: 40px;
+  font-size: 50px;
+}
+
+p[type="inputform"] {
+  font-size: 20px;
+}
+
+button[type="pretty"] {
+  border: 4px solid #5a7ba7;
 }
