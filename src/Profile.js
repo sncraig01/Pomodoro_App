@@ -9,15 +9,14 @@ import "./Profile.css";
 import firebase from "./Firebase.js";
 
 export default class Profile extends React.Component {
-
-  state={
+  state = {
     name: "",
     email: "",
 
-    activities: [],
-  }
+    activities: []
+  };
 
-  componentDidMount=()=>{
+  componentDidMount = () => {
     // set the state with the current user info
     if (firebase.auth().currentUser) {
       //get the current user, if its not null
@@ -25,25 +24,28 @@ export default class Profile extends React.Component {
       this.setState({ name: user.displayName, email: user.email }); //set the state with the info
     }
 
-    const activitiesRef = firebase.database().ref("users/" + user.displayName ); //reference to the database, for the specific user
+    const activitiesRef = firebase.database().ref("users/" + user.displayName); //reference to the database, for the specific user
     //do something with the data
-    activitiesRef.on("value", (snapshot) => {
-      console.log( "snapshot")
-      console.log( snapshot.val() );
+    activitiesRef.on(
+      "value",
+      snapshot => {
+        console.log("snapshot");
+        console.log(snapshot.val());
 
-      var returnArr = [];
-      snapshot.forEach(function(childSnapshot) {
+        var returnArr = [];
+        snapshot.forEach(function(childSnapshot) {
           var item = childSnapshot.val();
-  
+
           returnArr.push(item);
-      });
+        });
 
-     this.setState( {activities: returnArr } );
-  }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
-  });
-
-  }
+        this.setState({ activities: returnArr });
+      },
+      function(errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      }
+    );
+  };
 
   handleClick = e => {
     this.props.history.push("/app");
