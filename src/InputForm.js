@@ -3,6 +3,7 @@ import "antd/dist/antd.css";
 import "./InputForm.css";
 import { Input, Button } from "antd";
 import firebase from "./Firebase.js";
+import RandGen from "./randGen.js";
 import BreakTimer from "./breakTimer";
 
 const InputGroup = Input.Group; //needed for ant design input groups
@@ -13,7 +14,6 @@ class InputForm extends React.Component {
     name: this.props.name,
     email: this.props.email,
     description: "",
-
     submitted: false
   };
 
@@ -103,10 +103,10 @@ class InputForm extends React.Component {
             onChange={e => this.changeDescription(e.target.value)}
           />
           <p />
-          <Button type="primary" onClick={() => this.submitLog()}>
+          <button type="primary" onClick={() => this.submitLog()}>
             {" "}
             Log My Activity!{" "}
-          </Button>{" "}
+          </button>{" "}
           <br />
         </div>
       );
@@ -115,9 +115,10 @@ class InputForm extends React.Component {
         <div className="input">
           <BreakTimer />
           <p type="inputform">You deserve a break!</p>
-          <Button type="primary" onClick={() => this.doItAgainClicked()}>
+          <button type="primary" onClick={() => this.doItAgainClicked()}>
             Do it Again!
-          </Button>
+          </button>
+          <RandGen />
         </div>
       );
     }
