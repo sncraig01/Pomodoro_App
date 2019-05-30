@@ -3,20 +3,13 @@ import "./timer.css";
 
 class BreakTimer extends Component {
   state = {
-    name: "",
-    email: "",
-
-    timerOn: true,
-    timerStart: 0,
-    timerTime: 300000 //5 minutes. timerTime is how much time is left
+    timerTime: 300000, //5 minutes. timerTime is how much time is left
+    newPage: true
   };
 
+  //setInterval repeats the given function at every given time-interval as written in milliseconds
   startTimer = () => {
-    this.setState({
-      timerOn: true,
-      timerTime: this.state.timerTime,
-      timerStart: this.state.timerTime
-    });
+    this.setState({ newPage: false });
     this.timer = setInterval(() => {
       const newTime = this.state.timerTime - 10;
       if (newTime >= 0) {
@@ -25,7 +18,6 @@ class BreakTimer extends Component {
         });
       } else {
         clearInterval(this.timer);
-        this.setState({ timerOn: false });
       }
     }, 10);
   };
@@ -45,6 +37,7 @@ class BreakTimer extends Component {
       //InputForm.js and if not it has the timer set up to run. The timer has a bunch of logic that looks at all the state conditions
       //and based on the combination displays different buttons with distinct functionality
       <div>
+        {this.state.newPage === true ? this.startTimer() : <div />}
         <h2 type="timer" style={{ color: "white" }}>
           {minutes} : {seconds}
         </h2>
