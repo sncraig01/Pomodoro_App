@@ -32,7 +32,7 @@ class BreakTimer extends Component {
     let minutes = ("0" + Math.floor((this.state.timerTime / 60000) % 60)).slice(
       -2
     );
-    if (this.state.timerTime == 0) {
+    if (this.state.timerTime === 0) {
       return (
         <button type="primary" onClick={this.props.doItAgainClicked}>
           Do it Again!

@@ -21,6 +21,7 @@ p[type="timer"] {
 
 h1[type="timer"] {
   font-size: 90px;
+  margin: 15px;
 }
 
 header[type="timer"] {

@@ -32,9 +32,9 @@ var uiConfig = {
     firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
   // Terms of service url.
-  tosUrl: "<your-tos-url>",
+  tosUrl: "http://http://www.sanger.dk/.com/",
   // Privacy policy url.
-  privacyPolicyUrl: "<your-privacy-policy-url>"
+  privacyPolicyUrl: "https://www.youtube.com/watch?v=j5a0jTc9S10"
 };
 
 export default class AuthUser extends React.Component {
