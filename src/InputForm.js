@@ -3,6 +3,7 @@ import "antd/dist/antd.css";
 import "./InputForm.css";
 import { Input, Button } from "antd";
 import firebase from "./Firebase.js";
+import BreakTimer from "./breakTimer";
 
 const InputGroup = Input.Group; //needed for ant design input groups
 const { TextArea } = Input;
@@ -112,6 +113,8 @@ class InputForm extends React.Component {
     } else {
       return (
         <div className="input">
+          <BreakTimer />
+          <p type="inputform">You deserve a break!</p>
           <Button type="primary" onClick={() => this.doItAgainClicked()}>
             Do it Again!
           </Button>
