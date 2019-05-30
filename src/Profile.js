@@ -7,8 +7,10 @@ import SvgIcon from "@material-ui/core/SvgIcon";
 import "./App.css";
 import "./Profile.css";
 import Graph from "./Graph.js";
+import Other_Graph from "./Other_Graph.js"
 import firebase from "./Firebase.js";
-import { Row, Col } from "antd";
+import { Row, Col, Affix } from "antd";
+
 
 export default class Profile extends React.Component {
   state = {
@@ -217,9 +219,14 @@ export default class Profile extends React.Component {
             </Typography>
             <br />
             <div>
-              {this.state.activities.length !== 0 ? (
+            <Affix offsetTop={30} onChange={affixed => console.log(affixed)}>
+              {this.state.activities.length !== 0 ? 
+                <div> 
                 <Graph data={this.state.activities} />
-              ) : null}
+                
+                </div>
+               : null}
+              </Affix>
             </div>
             <br />
           </Col>
@@ -229,3 +236,6 @@ export default class Profile extends React.Component {
     );
   }
 }
+
+/*<br/>
+                <Other_Graph data={this.state.activities} />*/
