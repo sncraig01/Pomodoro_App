@@ -11,26 +11,11 @@ class InputForm extends React.Component {
   state = {
     name: this.props.name,
     email: this.props.email,
-    day: "",
-    month: "",
-    year: "",
     description: "",
 
     submitted: false
   };
 
-  //change state as user inputs something
-  changeDay = text => {
-    this.setState({ day: text });
-  };
-  //change state as user inputs something
-  changeMonth = text => {
-    this.setState({ month: text });
-  };
-  //change state as user inputs something
-  changeYear = text => {
-    this.setState({ year: text });
-  };
   //change state as user inputs something
   changeDescription = text => {
     this.setState({ description: text });
@@ -40,8 +25,56 @@ class InputForm extends React.Component {
   submitLog = () => {
     this.setState({ submitted: true });
     const usersRef = firebase.database().ref("users/" + this.state.name); //reference to the database "users" key
+    let today = new Date();
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    let minutes =
+      today.getMinutes().toString().length == 1
+        ? "0" + today.getMinutes()
+        : today.getMinutes();
+    let hours =
+      today.getHours().toString().length == 1
+        ? "0" + today.getHours()
+        : today.getHours();
+    let ampm = today.getHours() >= 12 ? "pm" : "am";
     let date_format =
-      this.state.month + " " + this.state.day + ", " + this.state.year;
+      monthNames[today.getMonth()] +
+      " " +
+      today.getDate() +
+      ", " +
+      today.getFullYear() +
+      " " +
+      hours +
+      ":" +
+      minutes +
+      " " +
+      ampm;
+
+    console.log(
+      monthNames[today.getMonth()] +
+        " " +
+        today.getDate() +
+        " " +
+        today.getFullYear() +
+        " " +
+        hours +
+        ":" +
+        minutes +
+        " " +
+        ampm
+    );
 
     const activity = {
       //create thing to be pushed
@@ -64,23 +97,6 @@ class InputForm extends React.Component {
           <h1 type="inputform"> Way to go! </h1>
           <p type="inputform"> Name: {this.state.name} </p>
           <p type="inputform">What did you do? </p>
-          <InputGroup compact>
-            <Input
-              style={{ width: "13%" }}
-              placeholder="Day"
-              onChange={e => this.changeDay(e.target.value)}
-            />
-            <Input
-              style={{ width: "30%" }}
-              placeholder="Month"
-              onChange={e => this.changeMonth(e.target.value)}
-            />
-            <Input
-              style={{ width: "20%" }}
-              placeholder="Year"
-              onChange={e => this.changeYear(e.target.value)}
-            />
-          </InputGroup>
           <p />
           <TextArea
             rows={4}
