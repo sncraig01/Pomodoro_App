@@ -21,18 +21,12 @@ export default class Pom extends React.Component {
         </p>
         <br />
         <h3>Principles of the Pomodoro Technique</h3>
-        <p>There are six steps in the original technique:</p>
-        <p type="list">
-          1. Decide task. <br />
-          2. Start timer. <br />
-          3. Work on task. <br />
-          4. Stop working when timer ends. Log what was accomplished. <br />
-          5. For the first four pomodoros, take a short break. Then, go back to
-          step 2. <br />
-          6. After four pomodoros, take a 15-20 minute break. Then, go back to
-          step 1.
-        </p>
         <p>
+          The first step in the method is planning. Once the task is decided,
+          start the timer to begin the pomodoro. You work on the task until the
+          timer stops. When timer ends, log what was accomplished. For the first
+          four pomodoros, take a short break between each. After a set of four,
+          take a 15-20 minute break. Then, go back to planning. <br />
           These steps effectively divide the pomodoros into reps in set, much
           like a gym workout plan. Logging completed work rewards you with
           accomplishment and planning allows you to accurately estimate the
