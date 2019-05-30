@@ -9,14 +9,17 @@ button[type="timer"] {
   margin: 10px 10px;
   color: white;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
 }
 
 h2[type="timer"] {
   font-size: 80px;
+
 }
 
 body {
-  overflow: hidden;
+  overflow: auto;
+
 }
 
 p[type="timer"] {

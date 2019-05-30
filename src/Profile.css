@@ -6,12 +6,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
 
   font-size: calc(6px + 2vmin);
 }
 h1,
 h3 {
   color: white;
+  overflow: auto;
 }
 
 button {
@@ -22,4 +24,5 @@ button {
   padding: 10px 24px;
   color: white;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  overflow: auto;
 }
