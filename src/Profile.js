@@ -5,57 +5,77 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import Button from "@material-ui/core/Button";
+import "./App.css"
 import "./Profile.css";
 import firebase from "./Firebase.js";
 
 export default class Profile extends React.Component {
-  state = {
+
+  state={
     name: "",
     email: "",
 
-    activities: []
-  };
+    activities: [],
+  }
 
-  componentDidMount = () => {
+  componentDidMount=()=>{
     // set the state with the current user info
     if (firebase.auth().currentUser) {
       //get the current user, if its not null
       var user = firebase.auth().currentUser;
       this.setState({ name: user.displayName, email: user.email }); //set the state with the info
-    }
 
-    const activitiesRef = firebase.database().ref("users/" + user.displayName); //reference to the database, for the specific user
-    //do something with the data
-    activitiesRef.on(
-      "value",
-      snapshot => {
-        console.log("snapshot");
-        console.log(snapshot.val());
-
+      const activitiesRef = firebase.database().ref("users/" + user.displayName ); //reference to the database, for the specific user
+      //do something with the data
+      activitiesRef.on("value", (snapshot) => {
+        console.log( "snapshot")
+        console.log( snapshot.val() );
+  
         var returnArr = [];
-        snapshot.forEach(function(childSnapshot) {
-          var item = childSnapshot.val();
-
-          returnArr.push(item);
+        snapshot.forEach(function(childSnapshot) { // for each activity
+            var item = childSnapshot.val();
+    
+            returnArr.push(item); //add it to this array
         });
-
-        this.setState({ activities: returnArr });
-      },
-      function(errorObject) {
+  
+       this.setState( {activities: returnArr } );
+    }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
-      }
-    );
-  };
+    });
+    }
+  }
+
+  //map all the activities
+  mapItems= () => {
+    let data = this.state.activities;
+        return data.map( 
+          (item) => 
+          {return   <div> 
+              <Typography component="h5" variant="h5" gutterBottom color="inherit">
+                {item.description}
+              </Typography>
+              <Typography component="h6" variant="subtitle1" gutterBottom color="inherit" inline>
+                {item.date}
+              </Typography>
+          </div>
+          }
+        )
+  }
+/*
+
+*/
 
   handleClick = e => {
     this.props.history.push("/app");
   };
 
+
   logOut = e => {};
+
 
   render() {
     return (
-      <div className="Profile">
+      <div className="Profile" >
         <AppBar position="static">
           <Toolbar>
             <IconButton onClick={this.handleClick} color="inherit">
@@ -91,43 +111,22 @@ export default class Profile extends React.Component {
         <Typography component="h2" variant="h2" gutterBottom color="inherit">
           Activity Log
         </Typography>
-        <Typography component="h5" variant="h5" gutterBottom color="inherit">
-          Activity1
-        </Typography>
-        <Typography
-          component="h6"
-          variant="h6"
-          gutterBottom
-          color="inherit"
-          inline
-        >
-          Date1
-        </Typography>
-        <Typography component="h5" variant="h5" gutterBottom color="inherit">
-          Activity2
-        </Typography>
-        <Typography
-          component="h6"
-          variant="h6"
-          gutterBottom
-          color="inherit"
-          inline
-        >
-          Date2
-        </Typography>
-        <Typography component="h5" variant="h5" gutterBottom color="inherit">
-          Activity3
-        </Typography>
-        <Typography
-          component="h6"
-          variant="h6"
-          gutterBottom
-          color="inherit"
-          inline
-        >
-          Date3
-        </Typography>
+        <br />
+        <div  style={{maxHeight: '100%', overflow: 'auto'}} >
+          {this.mapItems()}
+        </div>
+        <br/>
       </div>
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
