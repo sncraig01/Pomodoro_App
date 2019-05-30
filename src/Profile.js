@@ -42,6 +42,7 @@ export default class Profile extends React.Component {
         });
   
        this.setState( {activities: returnArr } );
+
        this.getTodaysStats();
        
     }, function (errorObject) {
@@ -154,8 +155,9 @@ export default class Profile extends React.Component {
           </div>
           <br/>
         </Col>
-
-        <Col span={12}>
+        <Col span={1}>
+        </Col>
+        <Col span={10}>
           <Typography component="h2" variant="h2" gutterBottom color="inherit" align="center">
             Summary
           </Typography>
@@ -171,6 +173,8 @@ export default class Profile extends React.Component {
                       <Graph data={this.state.activities}/>: null } 
           </div>
           <br />
+        </Col>
+        <Col span={1}>
         </Col>
       </Row>
       </div>
