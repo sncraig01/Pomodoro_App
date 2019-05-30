@@ -1,5 +1,5 @@
 import React from "react";
-import "./pom.css";
+
 
 export default class Pom extends React.Component {
   constructor(props) {

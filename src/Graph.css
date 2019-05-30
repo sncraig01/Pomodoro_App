@@ -1,2 +1,3 @@
 
-div[type="graph"] {background-color: white;}
+div[type="graph"] {background-color: white; 
+    text-align: center}
