@@ -41,7 +41,7 @@ export default class AuthUser extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        <header type="welcome">
           <h2> Welcome to the Pomodoro Tracker! </h2>
           <div id="firebaseui-auth-container" />
           <div id="loader">Loading...</div>
