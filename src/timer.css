@@ -30,3 +30,9 @@ header[type="timer"] {
 header.App-header {
   background: #282c34;
 }
+
+header {
+  background: url(https://www.goodfreephotos.com/albums/other-landscapes/mountains-landscape-with-pine-trees.jpg);
+  background-position: center;
+  background-size: cover;
+}

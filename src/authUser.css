@@ -1,12 +1,12 @@
 input,
 select,
 textarea {
-  color: black;
+  color: white;
 }
 
 textarea:focus,
 input:focus {
-  color: black;
+  color: white;
 }
 
 .firebaseui-button {
@@ -34,8 +34,13 @@ h2 {
   margin: 0px;
 }
 
+label {
+  color: white;
+}
+
 p {
   font-size: 10px;
+  color: white;
 }
 
 li {
@@ -44,8 +49,12 @@ li {
   margin: 10px;
 }
 
-header {
+body {
   background: url(https://www.goodfreephotos.com/albums/other-landscapes/mountains-landscape-with-pine-trees.jpg);
   background-position: center;
   background-size: cover;
+}
+
+header[type="welcome"] {
+  background: transparent;
 }
