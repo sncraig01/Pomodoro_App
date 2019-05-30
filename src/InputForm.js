@@ -1,7 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "./InputForm.css";
-import { Input, Button } from "antd";
+import { Input } from "antd";
 import firebase from "./Firebase.js";
 import BreakTimer from "./breakTimer";
 
@@ -102,7 +102,7 @@ class InputForm extends React.Component {
             onChange={e => this.changeDescription(e.target.value)}
           />
           <p />
-          <button type="primary" onClick={() => this.submitLog()}>
+          <button type="pretty" onClick={() => this.submitLog()}>
             {" "}
             Log My Activity!{" "}
           </button>{" "}

@@ -2,6 +2,7 @@
   color: white;
   font-family: Tahoma;
   font-size: 18px;
+  width: 500px;
 }
 
 h1[type="inputform"] {
@@ -12,4 +13,8 @@ h1[type="inputform"] {
 
 p[type="inputform"] {
   font-size: 20px;
+}
+
+button[type="pretty"] {
+  border: 4px solid #5a7ba7;
 }
