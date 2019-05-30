@@ -89,7 +89,7 @@ class Timer extends Component {
             />
           ))
         ) : (
-          <div>
+          <header type="timer">
             <h1 type="timer"> Welcome! </h1>
             <p type="timer"> Click start to begin using the Pomodoro method </p>
             <h2 type="timer" style={{ color: "white" }}>
@@ -122,10 +122,9 @@ class Timer extends Component {
                   <button type="timer" onClick={this.resetTimer}>
                     Reset
                   </button>
-      
-                    )}
+                )}
             </div>
-          </div>
+          </header>
         )}
       </div>
     );

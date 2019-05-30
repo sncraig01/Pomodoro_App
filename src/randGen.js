@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import "./InputForm.css";
 import Typography from "@material-ui/core/Typography";
 
 export default class RandGen extends React.Component {
@@ -62,12 +62,12 @@ export default class RandGen extends React.Component {
         <Typography component="h4" variant="h4" gutterBottom color="inherit">
           Pass the Time!
         </Typography>
-        <button type="primary" onClick={this.getJoke}>
+        <button type="pretty" onClick={this.getJoke}>
           Need a Laugh?
         </button>
         <br />
         <br />
-        <button type="primary" onClick={this.getQuote}>
+        <button type="pretty" onClick={this.getQuote}>
           Need Inspiration?
         </button>
       </div>

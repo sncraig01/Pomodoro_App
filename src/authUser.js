@@ -38,7 +38,6 @@ var uiConfig = {
 };
 
 export default class AuthUser extends React.Component {
-
   render() {
     return (
       <div className="App">
