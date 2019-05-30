@@ -21,6 +21,7 @@ export default class Profile extends React.Component {
     activities_count: 0,
   }
 
+
   componentDidMount=()=>{
     // set the state with the current user info
     if (firebase.auth().currentUser) {
@@ -40,10 +41,9 @@ export default class Profile extends React.Component {
     
             returnArr.push(item); //add it to this array
         });
-  
-       this.setState( {activities: returnArr } );
 
-       this.getTodaysStats();
+       //this.setState( {activities: returnArr } );
+       this.getTodaysStats( returnArr );
        
     }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
@@ -63,7 +63,7 @@ export default class Profile extends React.Component {
 }
 
 
-  getTodaysStats=()=>{
+  getTodaysStats=( returnArr )=>{
     let today = new Date(); //get the current date
     const monthNames = [
       "January",
@@ -81,7 +81,8 @@ export default class Profile extends React.Component {
     ];
     let todays_date = monthNames[today.getMonth()] + " " + today.getDate() + ", " + today.getFullYear();
 
-    let alldata = this.state.activities;
+    let alldata = returnArr;
+    console.log( "act length: " + alldata.length )
 
     //get an array of each date ONCE
     let datesONCE = [];
@@ -97,8 +98,10 @@ export default class Profile extends React.Component {
     }
 
     console.log( "activities completed today: ")
+    
     let numActivitiesToday = this.countInArray( datesALL, todays_date );
-    this.setState({num_activities_today: numActivitiesToday, activities_count: alldata.length} )
+    console.log(numActivitiesToday )
+    this.setState({ activities: returnArr, num_activities_today: numActivitiesToday, activities_count: alldata.length } )
   }
 
 
@@ -120,11 +123,16 @@ export default class Profile extends React.Component {
   }
 
   handleClick = e => {
-    this.props.history.push("/app");
+    this.props.history.push(
+      {   
+        pathname: "/app", 
+        state: { num_activities: this.state.num_activities_today }
+      });
   };
 
 
   render() {
+    
     return (
       <div className="Profile" >
        <AppBar position="static">
@@ -140,7 +148,7 @@ export default class Profile extends React.Component {
               </SvgIcon>
             </IconButton>
             <Typography variant="h6" color="inherit">
-              Profile
+              Pomodoro Timer
             </Typography>
           </Toolbar>
         </AppBar>

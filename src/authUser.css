@@ -1,12 +1,12 @@
 input,
 select,
 textarea {
-  color: white;
+  color: black;
 }
 
 textarea:focus,
 input:focus {
-  color: white;
+  color: black;
 }
 
 .firebaseui-button {

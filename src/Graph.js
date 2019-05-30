@@ -39,18 +39,6 @@ class Graph extends React.Component {
             }
         }
 
-        console.log( "dates once: ");
-        for( let i = 0; i < datesONCE.length; i ++ ){
-            console.log( datesONCE[i] );
-        }
-        console.log( "ALL DATES: ");
-        for( let i = 0; i < datesALL.length; i ++ ){
-            console.log( datesALL[i] );
-        }
-
-
-        console.log( this.countInArray( datesALL, "May 30, 2019"))
-
         //make an array that combines the two
         var dict = []; //where we will map dates to the number of activities
         for( let i = 0; i < datesONCE.length ; i++ ){
