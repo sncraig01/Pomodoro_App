@@ -11,10 +11,13 @@ export default class NavBar extends React.Component {
   constructor(props) {
     super(props);
   }
+
   handleClick = e => {
     // Redirects to profile page
-    this.props.history.push("/profile");
+    this.props.history.push( "/profile")
+
   };
+  
   render() {
     return (
       <div>
@@ -24,7 +27,7 @@ export default class NavBar extends React.Component {
               <AccountCircle />
             </IconButton>
             <Typography variant="h6" color="inherit">
-              Pomodoro Tracker
+              Your Profile
             </Typography>
           </Toolbar>
         </AppBar>

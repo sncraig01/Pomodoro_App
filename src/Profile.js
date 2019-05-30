@@ -43,17 +43,17 @@ export default class Profile extends React.Component {
             var item = childSnapshot.val();
 
             returnArr.push(item); //add it to this array
-          });
 
-          this.setState({ activities: returnArr });
+        });
 
-          this.getTodaysStats();
-        },
-        function(errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        }
-      );
+       
+       this.getTodaysStats( returnArr );
+       
+    }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+    });
     }
+
   };
 
   countInArray(array, what) {
@@ -66,7 +66,8 @@ export default class Profile extends React.Component {
     return count;
   }
 
-  getTodaysStats = () => {
+
+  getTodaysStats=( returnArr )=>{
     let today = new Date(); //get the current date
     const monthNames = [
       "January",
@@ -89,7 +90,8 @@ export default class Profile extends React.Component {
       ", " +
       today.getFullYear();
 
-    let alldata = this.state.activities;
+    let alldata = returnArr;
+    console.log( "act length: " + alldata.length )
 
     //get an array of each date ONCE
     let datesONCE = [];
@@ -104,14 +106,11 @@ export default class Profile extends React.Component {
         datesONCE.push(testDate);
       }
     }
+    
+    let numActivitiesToday = this.countInArray( datesALL, todays_date );
 
-    console.log("activities completed today: ");
-    let numActivitiesToday = this.countInArray(datesALL, todays_date);
-    this.setState({
-      num_activities_today: numActivitiesToday,
-      activities_count: alldata.length
-    });
-  };
+    this.setState({ activities: returnArr, num_activities_today: numActivitiesToday, activities_count: alldata.length } )
+  }
 
   //map all the activities
   mapItems = () => {
@@ -144,10 +143,15 @@ export default class Profile extends React.Component {
   };
 
   handleClick = e => {
-    this.props.history.push("/app");
+    this.props.history.push(
+      {   
+        pathname: "/app", 
+        state: { num_activities: this.state.num_activities_today }
+      });
   };
 
   render() {
+    
     return (
       <div className="Profile">
         <AppBar position="static">
@@ -163,7 +167,7 @@ export default class Profile extends React.Component {
               </SvgIcon>
             </IconButton>
             <Typography variant="h6" color="inherit">
-              Profile
+              Pomodoro Timer
             </Typography>
           </Toolbar>
         </AppBar>
