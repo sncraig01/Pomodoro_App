@@ -37,7 +37,7 @@ export default class RandGen extends React.Component {
             {this.state.joke}
           </Typography>
           <br />
-          <button type="primary" onClick={this.getAnother}>
+          <button type="pretty" onClick={this.getAnother}>
             Still Bored?
           </button>
         </div>
@@ -50,7 +50,7 @@ export default class RandGen extends React.Component {
             {this.state.quote}
           </Typography>
           <br />
-          <button type="primary" onClick={this.getAnother}>
+          <button type="pretty" onClick={this.getAnother}>
             Still Bored?
           </button>
         </div>
