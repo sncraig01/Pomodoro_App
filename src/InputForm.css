@@ -2,17 +2,14 @@
   color: white;
   font-family: Tahoma;
   font-size: 18px;
-  overflow: auto;
 }
 
 h1[type="inputform"] {
   color: white;
   font-family: Verdana, sans-serif;
   font-size: 50px;
-  overflow: auto;
 }
 
 p[type="inputform"] {
   font-size: 20px;
-  overflow: auto;
 }

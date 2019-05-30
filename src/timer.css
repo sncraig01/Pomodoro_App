@@ -17,11 +17,6 @@ h2[type="timer"] {
 
 }
 
-body {
-  overflow: auto;
-
-}
-
 p[type="timer"] {
   font-size: 15px;
   margin: 0px;

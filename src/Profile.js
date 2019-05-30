@@ -7,6 +7,7 @@ import SvgIcon from "@material-ui/core/SvgIcon";
 import Button from "@material-ui/core/Button";
 import "./App.css"
 import "./Profile.css";
+import Graph from "./Graph.js"
 import firebase from "./Firebase.js";
 
 export default class Profile extends React.Component {
@@ -51,10 +52,10 @@ export default class Profile extends React.Component {
         return data.map( 
           (item) => 
           {return   <div> 
-              <Typography component="h5" variant="h5" gutterBottom color="inherit">
+              <Typography align = "center" component="h5" variant="h5" gutterBottom color="inherit">
                 {item.description}
               </Typography>
-              <Typography component="h6" variant="subtitle1" gutterBottom color="inherit" inline>
+              <Typography align = "center" component="h6" variant="subtitle1" gutterBottom color="inherit" inline>
                 {item.date}
               </Typography>
           </div>
@@ -112,10 +113,12 @@ export default class Profile extends React.Component {
           Activity Log
         </Typography>
         <br />
-        <div  style={{maxHeight: '100%', overflow: 'auto'}} >
+        <div >
           {this.mapItems()}
         </div>
         <br/>
+        {  (this.state.activities.length !== 0) ? 
+                    <Graph data={this.state.activities}/> : null } 
       </div>
     );
   }
