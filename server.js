@@ -9,22 +9,21 @@ app.use(cors());
 app.get("/quote", (req, res) => {
   axios
     .get(
-      "https://healthruwords.p.rapidapi.com/v1/quotes/?id=731&t=Wisdom&maxR=1&size=medium"
+      "https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json"
     )
     .then(result => {
-      res.send(result.data.items[0].volumeInfo.authors);
+      res.send(result.data.quoteText + "    -" + result.data.quoteAuthor);
     });
 });
 
 app.get("/joke", (req, res) => {
-    axios
-      .get(
-        "https://www.googleapis.com/books/v1/volumes?q=intitle:" +
-          req.params.title
-      )
-      .then(result => {
-        res.send(result.data.items[0].volumeInfo.authors);
-      });
-  });
+  axios
+    .get("https://icanhazdadjoke.com/", {
+      headers: { Accept: "application/json" }
+    })
+    .then(result => {
+      res.send(result.data);
+    });
+});
 
 app.listen(port, () => console.log("App listening..."));

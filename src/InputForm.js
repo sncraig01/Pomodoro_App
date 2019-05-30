@@ -3,6 +3,7 @@ import "antd/dist/antd.css";
 import "./InputForm.css";
 import { Input, Button } from "antd";
 import firebase from "./Firebase.js";
+import RandGen from "./randGen.js";
 
 const InputGroup = Input.Group; //needed for ant design input groups
 const { TextArea } = Input;
@@ -12,7 +13,6 @@ class InputForm extends React.Component {
     name: this.props.name,
     email: this.props.email,
     description: "",
-
     submitted: false
   };
 
@@ -102,19 +102,20 @@ class InputForm extends React.Component {
             onChange={e => this.changeDescription(e.target.value)}
           />
           <p />
-          <Button type="primary" onClick={() => this.submitLog()}>
+          <button type="primary" onClick={() => this.submitLog()}>
             {" "}
             Log My Activity!{" "}
-          </Button>{" "}
+          </button>{" "}
           <br />
         </div>
       );
     } else {
       return (
         <div className="input">
-          <Button type="primary" onClick={() => this.doItAgainClicked()}>
+          <button type="primary" onClick={() => this.doItAgainClicked()}>
             Do it Again!
-          </Button>
+          </button>
+          <RandGen />
         </div>
       );
     }
