@@ -54,13 +54,9 @@ class InputForm extends React.Component {
       " " +
       today.getDate() +
       ", " +
-      today.getFullYear() +
-      " " +
-      hours +
-      ":" +
-      minutes +
-      " " +
-      ampm;
+      today.getFullYear();
+
+    let time_format = hours + ":" + minutes + " " + ampm;
 
     console.log(
       monthNames[today.getMonth()] +
@@ -79,7 +75,8 @@ class InputForm extends React.Component {
     const activity = {
       //create thing to be pushed
       date: date_format,
-      description: this.state.description
+      description: this.state.description,
+      time: time_format
     };
     usersRef.push(activity); //push the data to the database
   };
