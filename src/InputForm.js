@@ -41,11 +41,11 @@ class InputForm extends React.Component {
       "December"
     ];
     let minutes =
-      today.getMinutes().toString().length == 1
+      today.getMinutes().toString().length === 1
         ? "0" + today.getMinutes()
         : today.getMinutes();
     let hours =
-      today.getHours().toString().length == 1
+      today.getHours().toString().length === 1
         ? "0" + today.getHours()
         : today.getHours();
     let ampm = today.getHours() >= 12 ? "pm" : "am";

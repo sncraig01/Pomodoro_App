@@ -7,6 +7,7 @@ import * as serviceWorker from "./serviceWorker";
 import AuthUser from "./authUser.js";
 import Main from "./Main.js";
 import Profile from "./Profile.js";
+import Pom from "./pom.js";
 
 const routing = (
   <Router>
@@ -14,6 +15,7 @@ const routing = (
       <Route path="/app" component={Main} />
       <Route path="/profile" component={Profile} />
       <Route exact path="/" component={AuthUser} />
+      <Route path="/info" component={Pom} />
     </div>
   </Router>
 );

@@ -60,6 +60,10 @@ class Timer extends Component {
     this.setState({ collectInput: false, timerStart: 0, timerTime: 2000 });
   };
 
+  learnMore = () => {
+    this.props.history.push("/info");
+  };
+
   render() {
     //the seconds and minutes allow the user to see the time broken down neatly as such
     let seconds = (
@@ -91,7 +95,13 @@ class Timer extends Component {
         ) : (
           <header type="timer">
             <h1 type="timer"> Welcome! </h1>
-            <p type="timer"> Click start to begin using the Pomodoro method </p>
+            <p type="timer">
+              {" "}
+              Click start to begin using the Pomodoro method. If you don't know
+              what it is...
+            </p>
+            <br />
+            <button onClick={this.learnMore}>Learn More Here</button>
             <h2 type="timer" style={{ color: "white" }}>
               {minutes} : {seconds}
             </h2>
