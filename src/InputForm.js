@@ -127,23 +127,14 @@ class InputForm extends React.Component {
           />
           <p />
           <p type="inputform"> Category: </p>
-          <div>
-            <Radio.Group onChange={() => this.onChange()} defaultValue="a">
-              <Radio.Button onClick={() => this.onClickA()} value="a">
-                Work
-              </Radio.Button>
-              <Radio.Button onClick={() => this.onClickB()} value="b">
-                School
-              </Radio.Button>
-              <Radio.Button onClick={() => this.onClickC()} value="c">
-                Hobbies
-              </Radio.Button>
-              <Radio.Button onClick={() => this.onClickD()} value="d">
-                Chores
-              </Radio.Button>
-              <Radio.Button onClick={() => this.onClickE()} value="e">
-                Other
-              </Radio.Button>
+
+          <div>    
+            <Radio.Group onChange={ () => this.onChange()} defaultValue="a">
+              <Radio.Button onClick={() => this.onClickA() }value="a">Work</Radio.Button>
+              <Radio.Button onClick={() => this.onClickB() }value="b">School</Radio.Button>
+              <Radio.Button onClick={() => this.onClickC() }value="c">Hobbies</Radio.Button>
+              <Radio.Button onClick={() => this.onClickD() }value="d">Chores</Radio.Button>
+              <Radio.Button onClick={() => this.onClickE() }value="e">Other</Radio.Button>
             </Radio.Group>
           </div>
           <br />

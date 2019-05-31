@@ -8,7 +8,9 @@ import "./Profile.css";
 import Graph from "./Graph.js";
 import Other_Graph from "./Other_Graph.js";
 import firebase from "./Firebase.js";
-import { Row, Col, Tag } from "antd";
+import { Row, Col, Tag, Select } from "antd";
+
+const { Option } = Select; //for the search by category
 
 export default class Profile extends React.Component {
   state = {
@@ -16,6 +18,7 @@ export default class Profile extends React.Component {
     email: "",
 
     activities: [],
+    ALLactivities: [],
     num_activities_today: 0,
     activities_count: 0
   };
@@ -131,6 +134,7 @@ export default class Profile extends React.Component {
 
       return (
         <div>
+        <div type="activities">
           <Typography align="center" component="h5" variant="h5" gutterBottom color="inherit" >
             {item.description}
           </Typography>
@@ -140,6 +144,8 @@ export default class Profile extends React.Component {
           <Typography align="center" component="h6" variant="subtitle1" gutterBottom color="inherit" inline >
                <Tag color={theColor}> {item.catagory} </Tag>
           </Typography>
+        </div>
+        <br/>
         </div>
       );
     });
@@ -151,6 +157,7 @@ export default class Profile extends React.Component {
       state: { num_activities: this.state.num_activities_today }
     });
   };
+
 
   render() {
     return (
@@ -173,23 +180,10 @@ export default class Profile extends React.Component {
           </Toolbar>
         </AppBar>
         <br />
-        <Typography
-              component="h2"
-              variant="h2"
-              gutterBottom
-              color="inherit"
-              align="center"
-            >
+        <Typography component="h2" variant="h2" gutterBottom color="inherit" align="center" >
               {this.state.name}
             </Typography>
-            <Typography
-            align="center"
-            component="h6"
-            variant="subtitle1"
-            gutterBottom
-            color="inherit"
-            inline
-          >
+          <Typography align="center"component="h6" variant="subtitle1" gutterBottom color="inherit" inline>
           {this.state.email}
           </Typography>
         <Row>
@@ -202,8 +196,8 @@ export default class Profile extends React.Component {
               align="center"
             >
               Activity Log
-            </Typography>
-            <div>{this.mapItems()}</div>
+            </Typography> 
+            <div type="activitiesContain">{this.mapItems()}</div>
             <br />
           </Col>
           <Col span={1} />
@@ -257,4 +251,3 @@ export default class Profile extends React.Component {
   }
 
 }
-
