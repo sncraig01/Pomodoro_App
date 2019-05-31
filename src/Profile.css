@@ -33,7 +33,11 @@ button {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-div[type="thegraphs"]{
-  display:flex;
+div[type="thegraphs"] {
+  display: flex;
   justify-content: center;
+}
+
+div.VictoryContainer {
+  max-width: 100%;
 }

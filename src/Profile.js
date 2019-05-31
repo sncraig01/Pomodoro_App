@@ -118,27 +118,42 @@ export default class Profile extends React.Component {
     let data = this.state.activities;
     return data.map(item => {
       let theColor = "lime";
-      if( item.catagory === "Work")
-        theColor = "purple";
-      else if( item.catagory === "School")
-        theColor = "geekblue";
-      else if( item.catagory === "Hobbies")
-        theColor = "magenta";
-      else if( item.catagory === "Chores")
-        theColor = "green";
-      else if( item.catagory === "Other")
-        theColor = "cyan";
+      if (item.catagory === "Work") theColor = "purple";
+      else if (item.catagory === "School") theColor = "geekblue";
+      else if (item.catagory === "Hobbies") theColor = "magenta";
+      else if (item.catagory === "Chores") theColor = "green";
+      else if (item.catagory === "Other") theColor = "cyan";
 
       return (
         <div>
-          <Typography align="center" component="h5" variant="h5" gutterBottom color="inherit" >
+          <Typography
+            align="center"
+            component="h5"
+            variant="h5"
+            gutterBottom
+            color="inherit"
+          >
             {item.description}
           </Typography>
-          <Typography align="center" component="h6" variant="subtitle1" gutterBottom color="inherit" inline >
+          <Typography
+            align="center"
+            component="h6"
+            variant="subtitle1"
+            gutterBottom
+            color="inherit"
+            inline
+          >
             {item.date} @ {item.time}
           </Typography>
-          <Typography align="center" component="h6" variant="subtitle1" gutterBottom color="inherit" inline >
-               <Tag color={theColor}> {item.catagory} </Tag>
+          <Typography
+            align="center"
+            component="h6"
+            variant="subtitle1"
+            gutterBottom
+            color="inherit"
+            inline
+          >
+            <Tag color={theColor}> {item.catagory} </Tag>
           </Typography>
         </div>
       );
@@ -174,24 +189,24 @@ export default class Profile extends React.Component {
         </AppBar>
         <br />
         <Typography
-              component="h2"
-              variant="h2"
-              gutterBottom
-              color="inherit"
-              align="center"
-            >
-              {this.state.name}
-            </Typography>
-            <Typography
-            align="center"
-            component="h6"
-            variant="subtitle1"
-            gutterBottom
-            color="inherit"
-            inline
-          >
+          component="h2"
+          variant="h2"
+          gutterBottom
+          color="inherit"
+          align="center"
+        >
+          {this.state.name}
+        </Typography>
+        <Typography
+          align="center"
+          component="h6"
+          variant="subtitle1"
+          gutterBottom
+          color="inherit"
+          inline
+        >
           {this.state.email}
-          </Typography>
+        </Typography>
         <Row>
           <Col span={12}>
             <Typography
@@ -241,7 +256,7 @@ export default class Profile extends React.Component {
                 <div>
                   <Graph data={this.state.activities} />
                   <br />
-                  <div type="thegraphs">
+                  <div>
                     {" "}
                     <Other_Graph data={this.state.activities} />{" "}
                   </div>
@@ -255,6 +270,4 @@ export default class Profile extends React.Component {
       </div>
     );
   }
-
 }
-
