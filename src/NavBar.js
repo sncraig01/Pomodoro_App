@@ -14,10 +14,9 @@ export default class NavBar extends React.Component {
 
   handleClick = e => {
     // Redirects to profile page
-    this.props.history.push( "/profile")
-
+    this.props.history.push("/profile");
   };
-  
+
   render() {
     return (
       <div>
