@@ -131,7 +131,7 @@ class InputForm extends React.Component {
             onChange={e => this.changeDescription(e.target.value)}
           />
           <p />
-          <p type="inputform"> Catagory: </p>
+          <p type="inputform"> Category: </p>
           <div>    
             <Radio.Group onChange={ () => this.onChange()} defaultValue="a">
               <Radio.Button onClick={() => this.onClickA() }value="a">Work</Radio.Button>
