@@ -1,5 +1,6 @@
 import React from "react";
 import "./timer.css";
+import { FormHelperText } from "@material-ui/core";
 
 export default class Pom extends React.Component {
   constructor(props) {
@@ -14,7 +15,10 @@ export default class Pom extends React.Component {
     const divStyle = {
       background: "#282C34",
       margin: "15px",
-      padding: "20px"
+      padding: "20px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
     };
 
     return (
