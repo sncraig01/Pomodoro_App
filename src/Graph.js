@@ -65,7 +65,7 @@ class Graph extends React.Component {
             <div className="App">
                 <div type="graph"> 
                     {(this.state.formattedData.length !== 0 ) ?     
-                    <VictoryChart domainPadding={50}  >
+                    <VictoryChart domainPadding={10}  >
                         <VictoryLabel text="Your Activity History" x={225} y={30} textAnchor="middle" style={{ fontSize: 30 }} />
                         <VictoryBar data={this.state.formattedData} x="date" y="count"/> 
                     </VictoryChart> : null  }
