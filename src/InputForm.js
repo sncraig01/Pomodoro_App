@@ -91,7 +91,7 @@ class InputForm extends React.Component {
     if (!this.state.submitted) {
       return (
         <div className="input">
-          <h1 type="inputform"> Way to go! </h1>
+          <h1 type="timer"> Way to go! </h1>
           <p type="inputform"> Name: {this.state.name} </p>
           <p type="inputform">What did you do? </p>
           <p />
