@@ -4,13 +4,11 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import SvgIcon from "@material-ui/core/SvgIcon";
-import "./App.css";
 import "./Profile.css";
 import Graph from "./Graph.js";
-import Other_Graph from "./Other_Graph.js"
+import Other_Graph from "./Other_Graph.js";
 import firebase from "./Firebase.js";
 import { Row, Col, Tag } from "antd";
-
 
 export default class Profile extends React.Component {
   state = {
@@ -45,17 +43,15 @@ export default class Profile extends React.Component {
             var item = childSnapshot.val();
 
             returnArr.push(item); //add it to this array
+          });
 
-        });
-
-       
-       this.getTodaysStats( returnArr );
-       
-    }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-    });
+          this.getTodaysStats(returnArr);
+        },
+        function(errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        }
+      );
     }
-
   };
 
   countInArray(array, what) {
@@ -68,8 +64,7 @@ export default class Profile extends React.Component {
     return count;
   }
 
-
-  getTodaysStats=( returnArr )=>{
+  getTodaysStats = returnArr => {
     let today = new Date(); //get the current date
     const monthNames = [
       "January",
@@ -93,7 +88,7 @@ export default class Profile extends React.Component {
       today.getFullYear();
 
     let alldata = returnArr;
-    console.log( "act length: " + alldata.length )
+    console.log("act length: " + alldata.length);
 
     //get an array of each date ONCE
     let datesONCE = [];
@@ -108,11 +103,15 @@ export default class Profile extends React.Component {
         datesONCE.push(testDate);
       }
     }
-    
-    let numActivitiesToday = this.countInArray( datesALL, todays_date );
 
-    this.setState({ activities: returnArr, num_activities_today: numActivitiesToday, activities_count: alldata.length } )
-  }
+    let numActivitiesToday = this.countInArray(datesALL, todays_date);
+
+    this.setState({
+      activities: returnArr,
+      num_activities_today: numActivitiesToday,
+      activities_count: alldata.length
+    });
+  };
 
   //map all the activities
   mapItems = () => {
@@ -147,15 +146,13 @@ export default class Profile extends React.Component {
   };
 
   handleClick = e => {
-    this.props.history.push(
-      {   
-        pathname: "/app", 
-        state: { num_activities: this.state.num_activities_today }
-      });
+    this.props.history.push({
+      pathname: "/app",
+      state: { num_activities: this.state.num_activities_today }
+    });
   };
 
   render() {
-    
     return (
       <div className="Profile">
         <AppBar position="static">
@@ -240,15 +237,16 @@ export default class Profile extends React.Component {
             </Typography>
             <br />
             <div>
-            
-              {this.state.activities.length !== 0 ? 
-                <div> 
-                <Graph data={this.state.activities} />
-                <br/>
-                <div type="thegraphs"> <Other_Graph data={this.state.activities} /> </div>
+              {this.state.activities.length !== 0 ? (
+                <div>
+                  <Graph data={this.state.activities} />
+                  <br />
+                  <div type="thegraphs">
+                    {" "}
+                    <Other_Graph data={this.state.activities} />{" "}
+                  </div>
                 </div>
-               : null}
-              
+              ) : null}
             </div>
             <br />
           </Col>
@@ -257,4 +255,6 @@ export default class Profile extends React.Component {
       </div>
     );
   }
+
 }
+

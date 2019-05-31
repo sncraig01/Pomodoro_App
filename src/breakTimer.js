@@ -34,7 +34,7 @@ class BreakTimer extends Component {
     );
     if (this.state.timerTime === 0) {
       return (
-        <button type="primary" onClick={this.props.doItAgainClicked}>
+        <button type="timer" onClick={this.props.doItAgainClicked}>
           Do it Again!
         </button>
       );
