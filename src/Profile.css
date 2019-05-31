@@ -38,6 +38,14 @@ div[type="thegraphs"] {
   justify-content: center;
 }
 
-div.VictoryContainer {
-  max-width: 100%;
+div[ type="activities"]{
+  background-color: #5a7ba7;
+  width: 350px;
 }
+
+div[ type="activitiesContain"]{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
