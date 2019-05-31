@@ -48,9 +48,9 @@ export default class Pom extends React.Component {
           you start the next set. <br /> <br />
           These steps effectively divide the pomodoros into reps in set, much
           like a gym workout plan. Logging completed work rewards you with a
-          sense of accomplishment and planning allows you to accurately estimate
-          the effort and time required for every task. The goal of this method
-          is to optimize efficiency and success.
+          sense of accomplishment, and planning allows you to accurately
+          estimate the effort and time required for every task. The goal of this
+          method is to optimize efficiency and success.
         </p>
         <p>
           For more information, check out{" "}
