@@ -67,11 +67,11 @@ class Other_Graph extends React.Component {
           {this.state.formattedData.length !== 0 ? (
             <VictoryChart theme={VictoryTheme.material}>
               <VictoryLabel
-                text="Your Activity History by Time"
+                text="Most Active Times"
                 x={185}
                 y={30}
                 textAnchor="middle"
-                style={{ fontSize: 27 }}
+                style={{ fontSize: 23 }}
               />
               <VictoryAxis
                 tickFormat={x => (x > 12 ? x - 12 + " pm" : x + " am")}
