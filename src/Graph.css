@@ -1,16 +1,18 @@
-
 div[type="graph"] {
-    background-color: white; 
-    text-align: center;
+  background-color: white;
+  text-align: center;
 }
 
+div[type="othergraph"] {
+  background-color: white;
+  text-align: center;
+  height: auto;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-div[type="othergraph"]{
-    background-color: white; 
-    text-align: center;
-    height: 240px;
-    width: 375px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+div.VictoryContainer {
+  max-width: 100%;
 }
