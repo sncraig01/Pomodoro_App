@@ -1,3 +1,16 @@
 
-div[type="graph"] {background-color: white; 
-    text-align: center}
+div[type="graph"] {
+    background-color: white; 
+    text-align: center;
+}
+
+
+div[type="othergraph"]{
+    background-color: white; 
+    text-align: center;
+    height: 240px;
+    width: 375px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
