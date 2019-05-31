@@ -100,7 +100,6 @@ class Timer extends Component {
               Click start to begin using the Pomodoro method. If you don't know
               what it is...
             </p>
-            <br />
             <button type="timer" onClick={this.learnMore}>
               Learn More Here
             </button>

@@ -58,14 +58,15 @@ class Other_Graph extends React.Component {
     render(){
         return (
             <div className="App">
-                <div type="graph"> 
+                <div type="othergraph"> 
                 {(this.state.formattedData.length !== 0 ) ?   
                     <VictoryChart style={{ parent: { maxWidth: "60%" } }}
                       theme={VictoryTheme.material}>
-                        <VictoryLabel text="Your Activity History by Time" x={185} y={30} textAnchor="middle" style={{ fontSize: 20}} />
+                        <VictoryLabel text="Your Activity History by Time" x={185} y={30} textAnchor="middle" style={{ fontSize: 27}} />
                         <VictoryAxis tickFormat= {(x) => ( x > 12 ? (x - 12) + " pm" : x + " am" )}  />
                         <VictoryAxis dependentAxis tickFormat={(x) => (x)} />
                         <VictoryScatter
+                            size={7} 
                             style={{ data: { fill: "#c43a31" } }}
                             data={this.state.formattedData}
                             x="time" y="count" />

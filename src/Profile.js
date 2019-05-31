@@ -174,6 +174,15 @@ export default class Profile extends React.Component {
           </Toolbar>
         </AppBar>
         <br />
+        <Typography
+              component="h2"
+              variant="h2"
+              gutterBottom
+              color="inherit"
+              align="center"
+            >
+              {this.state.name}
+            </Typography>
         <Row>
           <Col span={12}>
             <Typography
@@ -219,14 +228,15 @@ export default class Profile extends React.Component {
             </Typography>
             <br />
             <div>
-            <Affix offsetTop={30} onChange={affixed => console.log(affixed)}>
+            
               {this.state.activities.length !== 0 ? 
                 <div> 
                 <Graph data={this.state.activities} />
-                
+                <br/>
+                <div type="thegraphs"> <Other_Graph data={this.state.activities} /> </div>
                 </div>
                : null}
-              </Affix>
+              
             </div>
             <br />
           </Col>
@@ -237,5 +247,9 @@ export default class Profile extends React.Component {
   }
 }
 
-/*<br/>
-                <Other_Graph data={this.state.activities} />*/
+/*
+
+<Affix offsetTop={30} onChange={affixed => console.log(affixed)}>
+</Affix>
+
+*/
