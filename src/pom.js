@@ -1,7 +1,6 @@
 import React from "react";
 import "./timer.css";
 
-
 export default class Pom extends React.Component {
   constructor(props) {
     super(props);
@@ -53,7 +52,7 @@ export default class Pom extends React.Component {
           For more information, check out{" "}
           <a>https://francescocirillo.com/pages/pomodoro-technique</a>.
         </p>
-        <button type="timer" onClick={this.handleClick}>
+        <button type="pretty" onClick={this.handleClick}>
           Return to Timer
         </button>
       </div>
