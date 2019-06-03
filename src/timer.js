@@ -10,7 +10,7 @@ class Timer extends Component {
 
     timerOn: false,
     timerStart: 0,
-    timerTime: 2000, //25 minutes. timerTime is how much time is left
+    timerTime: 5000, //25 minutes. timerTime is how much time is left
     collectInput: false
   };
 

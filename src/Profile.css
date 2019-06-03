@@ -33,7 +33,19 @@ button {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-div[type="thegraphs"]{
-  display:flex;
+div[type="thegraphs"] {
+  display: flex;
   justify-content: center;
 }
+
+div[ type="activities"]{
+  background-color: #5a7ba7;
+  width: 350px;
+}
+
+div[ type="activitiesContain"]{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+

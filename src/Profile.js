@@ -4,13 +4,13 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import SvgIcon from "@material-ui/core/SvgIcon";
-import "./App.css";
 import "./Profile.css";
 import Graph from "./Graph.js";
-import Other_Graph from "./Other_Graph.js"
+import Other_Graph from "./Other_Graph.js";
 import firebase from "./Firebase.js";
-import { Row, Col, Affix } from "antd";
+import { Row, Col, Tag, Select } from "antd";
 
+const { Option } = Select; //for the search by category
 
 export default class Profile extends React.Component {
   state = {
@@ -18,6 +18,7 @@ export default class Profile extends React.Component {
     email: "",
 
     activities: [],
+    ALLactivities: [],
     num_activities_today: 0,
     activities_count: 0
   };
@@ -45,17 +46,15 @@ export default class Profile extends React.Component {
             var item = childSnapshot.val();
 
             returnArr.push(item); //add it to this array
+          });
 
-        });
-
-       
-       this.getTodaysStats( returnArr );
-       
-    }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-    });
+          this.getTodaysStats(returnArr);
+        },
+        function(errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        }
+      );
     }
-
   };
 
   countInArray(array, what) {
@@ -68,8 +67,7 @@ export default class Profile extends React.Component {
     return count;
   }
 
-
-  getTodaysStats=( returnArr )=>{
+  getTodaysStats = returnArr => {
     let today = new Date(); //get the current date
     const monthNames = [
       "January",
@@ -93,7 +91,7 @@ export default class Profile extends React.Component {
       today.getFullYear();
 
     let alldata = returnArr;
-    console.log( "act length: " + alldata.length )
+    console.log("act length: " + alldata.length);
 
     //get an array of each date ONCE
     let datesONCE = [];
@@ -108,25 +106,33 @@ export default class Profile extends React.Component {
         datesONCE.push(testDate);
       }
     }
-    
-    let numActivitiesToday = this.countInArray( datesALL, todays_date );
 
-    this.setState({ activities: returnArr, num_activities_today: numActivitiesToday, activities_count: alldata.length } )
-  }
+    let numActivitiesToday = this.countInArray(datesALL, todays_date);
+
+    this.setState({
+      activities: returnArr,
+      num_activities_today: numActivitiesToday,
+      activities_count: alldata.length
+    });
+  };
 
   //map all the activities
   mapItems = () => {
     let data = this.state.activities;
     return data.map(item => {
+      let theColor = "lime";
+      if (item.catagory === "Work") theColor = "purple";
+      else if (item.catagory === "School") theColor = "geekblue";
+      else if (item.catagory === "Hobbies") theColor = "magenta";
+      else if (item.catagory === "Chores") theColor = "green";
+      else if (item.catagory === "Other") theColor = "cyan";
+
       return (
         <div>
-          <Typography
-            align="center"
-            component="h5"
-            variant="h5"
-            gutterBottom
-            color="inherit"
-          >
+
+        <div type="activities">
+          <Typography align="center" component="h5" variant="h5" gutterBottom color="inherit" >
+
             {item.description}
           </Typography>
           <Typography
@@ -139,21 +145,32 @@ export default class Profile extends React.Component {
           >
             {item.date} @ {item.time}
           </Typography>
+          <Typography
+            align="center"
+            component="h6"
+            variant="subtitle1"
+            gutterBottom
+            color="inherit"
+            inline
+          >
+            <Tag color={theColor}> {item.catagory} </Tag>
+          </Typography>
+        </div>
+        <br/>
         </div>
       );
     });
   };
 
   handleClick = e => {
-    this.props.history.push(
-      {   
-        pathname: "/app", 
-        state: { num_activities: this.state.num_activities_today }
-      });
+    this.props.history.push({
+      pathname: "/app",
+      state: { num_activities: this.state.num_activities_today }
+    });
   };
 
+
   render() {
-    
     return (
       <div className="Profile">
         <AppBar position="static">
@@ -174,15 +191,14 @@ export default class Profile extends React.Component {
           </Toolbar>
         </AppBar>
         <br />
-        <Typography
-              component="h2"
-              variant="h2"
-              gutterBottom
-              color="inherit"
-              align="center"
-            >
+
+        <Typography component="h2" variant="h2" gutterBottom color="inherit" align="center" >
               {this.state.name}
             </Typography>
+          <Typography align="center"component="h6" variant="subtitle1" gutterBottom color="inherit" inline>
+
+          {this.state.email}
+        </Typography>
         <Row>
           <Col span={12}>
             <Typography
@@ -193,8 +209,8 @@ export default class Profile extends React.Component {
               align="center"
             >
               Activity Log
-            </Typography>
-            <div>{this.mapItems()}</div>
+            </Typography> 
+            <div type="activitiesContain">{this.mapItems()}</div>
             <br />
           </Col>
           <Col span={1} />
@@ -228,15 +244,16 @@ export default class Profile extends React.Component {
             </Typography>
             <br />
             <div>
-            
-              {this.state.activities.length !== 0 ? 
-                <div> 
-                <Graph data={this.state.activities} />
-                <br/>
-                <div type="thegraphs"> <Other_Graph data={this.state.activities} /> </div>
+              {this.state.activities.length !== 0 ? (
+                <div>
+                  <Graph data={this.state.activities} />
+                  <br />
+                  <div>
+                    {" "}
+                    <Other_Graph data={this.state.activities} />{" "}
+                  </div>
                 </div>
-               : null}
-              
+              ) : null}
             </div>
             <br />
           </Col>
@@ -246,10 +263,3 @@ export default class Profile extends React.Component {
     );
   }
 }
-
-/*
-
-<Affix offsetTop={30} onChange={affixed => console.log(affixed)}>
-</Affix>
-
-*/
